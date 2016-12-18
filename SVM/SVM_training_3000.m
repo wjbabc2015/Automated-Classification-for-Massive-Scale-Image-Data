@@ -4,10 +4,16 @@ accuracy_2 = ones(40,1);
 
 %speicfy_range = [1:14,16:17,21:34,36:37];%total 32 feature parameters
 %speicfy_range = [1,3,5,6,11,16,17,29,32,33,34];%forward propagation approach 3000
-speicfy_range = [1,3:14,16:17,21:23,25:32,34,37]; %Classifier 1
+%speicfy_range = [1,3:14,16:17,21:23,25:32,34,37]; %Classifier 1
 %speicfy_range = [1,3:14,16:17,21:27,29:32,34,37]; %Classifier 2
 %speicfy_range = [1,3:13,16:17,21:27,29:32,34,37]; %Classifier 3
 %speicfy_range = [1,4:13,16:17,21:27,29:32,37]; %Classifier 4
+
+%speicfy_range = [1,3,5,6,9,11,12,13,14,16,21,23,25,26,29,31,32,33,34,36];
+speicfy_range = [36,33,22,24,23,26];
+%speicfy_range = [16,2,3,6,4,13,36,22,23,26,24,33];
+
+
 
 train_feature = experiment_feature(1:2000,speicfy_range);
 train_label = experiment_label(1:2000,:);
@@ -19,12 +25,13 @@ test_label = experiment_label(2401:3000,:);
 %model_post = svmtrain(train_label, train_feature, '-c 1 -g 0.07');
 %model_post = svmtrain(train_label, train_feature, '-c 512 -g 0.5');
 %model_post = svmtrain(train_label, train_feature, '-c 4096 -g 0.125');
-model_post = svmtrain([train_label; val_label], [train_feature; val_feature], '-c 1 -g 0.07');
-[predict_label, accuracy_2_final, prob_est] = svmpredict(test_label, ...
-        test_feature, model_post);
+model_post = svmtrain(train_label, train_feature, '-c 256 -g 4');
+%model_post = svmtrain([train_label; val_label], [train_feature; val_feature], '-c 1 -g 0.07');
+[predict_label, accuracy_2_final, prob_est] = svmpredict(test_label, test_feature, model_post);
+%[predict_label, accuracy_2_final, prob_est] = svmpredict(val_label, val_feature, model_post);
     
-%cMatrix = confusionmat(test_label, predict_label);
-%confusion_matrix_plot();
+cMatrix = confusionmat(test_label, predict_label);
+confusion_matrix_plot();
 
 %{
 s-:

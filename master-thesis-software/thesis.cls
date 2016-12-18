@@ -319,7 +319,7 @@
                 \twocolumn
               \fi}
 \newcommand\chapter{\if@openright\cleardoublepage\fi
-                    \thispagestyle{plain}%
+                    \thispagestyle{empty}%
                     \global\@topnum\z@
                     \@afterindentfalse
                     \secdef\@chapter\@schapter}

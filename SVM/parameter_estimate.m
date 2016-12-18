@@ -1,4 +1,6 @@
-speicfy_range = [1,3:14,16:17,21:23,25:32,34,37];
+%speicfy_range = [1,3:14,16:17,21:23,25:32,34,37];
+speicfy_range = [36,22,23,26,24,33];
+%speicfy_range = [1,5,8,16,6,7,12];
 
 train_feature = experiment_feature(1:2000,speicfy_range);
 train_label = experiment_label(1:2000,:);
